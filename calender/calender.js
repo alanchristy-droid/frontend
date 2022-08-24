@@ -8,25 +8,35 @@ const calculateDay = (year, month) => {
     return days
 }
 
-const generateYear = () =>{
+const generateYear = (yearConst) =>{
     const year = document.getElementById("yearid")
-    for(let i = 1970; i <= 2022; i++)
+    for(let i = 1970; i <= 2030; i++)
     {
         const yearElement = document.createElement("option")
         const content = document.createTextNode(i)
+        yearElement.value = i
+        if(i === yearConst)
+        {
+            yearElement.setAttribute("selected", "selected")
+        }
         yearElement.appendChild(content)
         year.appendChild(yearElement)
     }
 }
-
-const generateMonth = () =>{
+// heat Wave
+const generateMonth = (monthConst) =>{
     const month = document.getElementById("monthid")
     monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     for (let i = 0; i < monthArray.length; i++) 
     {
         const monthElement = document.createElement("option")
         const content = document.createTextNode(monthArray[i])
-        monthElement.value=i
+        monthElement.value = i
+        monthElement.id = "month"
+        if(i === monthConst)
+        {
+            monthElement.setAttribute("selected", "selected")
+        }
         // console.table({[monthArray[i]]:i})   
         monthElement.appendChild(content)    
         month.appendChild(monthElement)
@@ -34,14 +44,30 @@ const generateMonth = () =>{
     }
 }
 
+// const incButton = () =>{
+//     dateIdVar = document.getElementById("date")
+//     weekIdVar = document.getElementById("week")
+//     weekIdVar.remove()
+//     dateIdVar.remove()
+//     setCalender(year, month + 1)  
+// }
+
+// const decButton = () =>{
+//     dateIdVar = document.getElementById("date")
+//     weekIdVar = document.getElementById("week")
+//     weekIdVar.remove()
+//     dateIdVar.remove()
+//     setCalender(year, month - 1)  
+// }
 const setCalender = (year, month) =>{
-    console.log("creating calendar with ",year, month)
+    // console.log("creating calendar with ",year, month)
     days = calculateDay(year, month)
-    startDay = days[0]
-    endDay = days[1]
+    const dD = new Date(year, month)
+    const textMonth= dD.toLocaleString('default', { month: 'long' })
+    contentYearMonth = `${textMonth} ${year}`
+    document.getElementById("heading").innerHTML = contentYearMonth
+    let dateArray = []
     let dayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-    let startDateArray = []
-    let endDateArray = []
     const week = document.getElementById("divweek")
     const weekElement = document.createElement("UL")
     weekElement.id = "week"
@@ -51,7 +77,6 @@ const setCalender = (year, month) =>{
         const dayElement = document.createElement("LI")
         const content = document.createTextNode(dayArray[i])
         dayElement.appendChild(content)
-        // weekElement.appendChild(dayElement)
         if(i === 0)
         {
             dayElement.setAttribute("style", "color: red;")   
@@ -66,54 +91,37 @@ const setCalender = (year, month) =>{
     }
     week.appendChild(weekElement)
 
+///edit from here
+
     for(let i = 0; i < startDay; i++)
     {
-        startDateArray.push("")
+        dateArray.push("")
+    }
+
+    const d = new Date(year, month + 1, 0)
+    totalDays = d.getDate()
+    for(i = 1; i <= totalDays; i++)
+    {
+        dateArray.push(i)
     }
 
     for(let i = 6; i > endDay; i--)
     {
-        endDateArray.push("")
+        dateArray.push("")
     }
+    let mainCalender = generateCalender(dateArray, year, month)
+    document.getElementById("head").appendChild(mainCalender)
+}  
 
-    startDateArray.forEach(createSpace)
-    createCalender(year, month)
-    endDateArray.forEach(createSpace)
-}    
-
-const createSpace = (v) =>{
-    const dateList = document.getElementById("date")
-    console.log(dateList)
-    if(!dateList)
-    {
-        const dateDiv = document.getElementById("divdate")
-        const dateDivElement = document.createElement("UL")
-        dateDivElement.id = "date"
-        const dateElement = document.createElement("LI")
-        dateElement.textContent=v
-        dateDivElement.appendChild(dateElement)
-        dateDiv.appendChild(dateDivElement)
-    }
-    else if(dateList)
-    {
-
-        const dateElement = document.createElement("LI")
-        dateElement.textContent=v
-        dateList.appendChild(dateElement)
-    }
-}
-
-const createCalender = (year, month) =>{
-    const d = new Date(year, month + 1, 0)
-    totalDays = d.getDate()
-    
-    for(i = 1; i <= totalDays; i++)
-    {
-        const dateElement = document.getElementById("date")
+const generateCalender = (dateArray, year, month) =>{
+    const divDate = document.getElementById("divdate")
+    const divDateElement = document.createElement('UL')
+    divDateElement.id = "date"
+    dateArray.forEach(v => {
         const element = document.createElement("LI")
-        const content = document.createTextNode(i)
+        const content = document.createTextNode(v)
         element.appendChild(content)
-        let day = new Date(year, month, i)
+        let day = new Date(year, month, v)
         let dayNum = day.getDay()
         if(dayNum === 0)
         {
@@ -123,23 +131,86 @@ const createCalender = (year, month) =>{
         {
             element.setAttribute("style", "color: green")
         }
-        dateElement.appendChild(element)
-    }
-    // dateDiv.appendChild(dateDivElement)
+        divDateElement.appendChild(element)
+    });
+    return divDate.appendChild(divDateElement)
 }
+
 document.getElementById("monthid").addEventListener("change", (e)=>{
     e.preventDefault()
     dateIdVar = document.getElementById("date")
     weekIdVar = document.getElementById("week")
     weekIdVar.remove()
     dateIdVar.remove()
-    let yearChange = document.getElementById("yearid").value
-    let monthChange = document.getElementById("monthid").value
-    setCalender(parseInt(yearChange), parseInt(monthChange))
+    let year = document.getElementById("yearid").value
+    let month = document.getElementById("monthid").value
+    setCalender(parseInt(year), parseInt(month))
 })
-generateMonth()
-generateYear()
+
+document.getElementById("yearid").addEventListener("change", (e)=>{
+    e.preventDefault()
+    dateIdVar = document.getElementById("date")
+    weekIdVar = document.getElementById("week")
+    weekIdVar.remove()
+    dateIdVar.remove()
+    year = document.getElementById("yearid").value
+    month = document.getElementById("monthid").value
+    console.log(month, year)
+    setCalender(parseInt(year), parseInt(month))
+})
+
+
 const d = new Date()
 let year = d.getFullYear()
 let month = d.getMonth()
+generateMonth(month)
+generateYear(year)
 setCalender(year, month)
+
+document.getElementById("incbutton").addEventListener("click", (e) =>{
+    dateIdVar = document.getElementById("date")
+    weekIdVar = document.getElementById("week")
+    weekIdVar.remove()
+    dateIdVar.remove()
+    let yearChange = document.getElementById("yearid")
+    let monthChange = document.getElementById("monthid")
+
+    if(parseInt(month) === 11)
+    {
+        year += 1
+        month = 0
+        yearChange.value = year
+        monthChange.value = month
+
+    }
+    else
+    {
+        month += 1
+        monthChange.value = month
+    }
+    setCalender(parseInt(year), parseInt(month))
+})
+
+document.getElementById("decbutton").addEventListener("click", (e) =>{
+    dateIdVar = document.getElementById("date")
+    weekIdVar = document.getElementById("week")
+    weekIdVar.remove()
+    dateIdVar.remove()  
+    let yearChange = document.getElementById("yearid")
+    let monthChange = document.getElementById("monthid")
+
+    if(parseInt(month) === 0)
+    {
+        year -= 1
+        month = 11
+        yearChange.value = year
+        monthChange.value = month
+
+    }
+    else
+    {
+        month -= 1
+        monthChange.value = month
+    }
+    setCalender(parseInt(year), parseInt(month))
+})
