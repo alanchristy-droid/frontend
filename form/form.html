@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./form.js"></script>
+    <link rel="stylesheet" href="./form.css">
+    <title>Form</title>
+</head>
+<body>
+    <h1>
+        <div class="heading">Create Form</div>
+    </h1>
+    <form action="./app.html" name="regForm" onsubmit="return validateForm()" method="post">
+
+        <table class="form" style="width: 500px;">
+            <tr>
+                <td><td><p id="msg"></p></td></td>
+            </tr>
+            <tr>
+                <td><label for="uname">Username:</label></td>
+                <td><input type="text" name="uname" id="uname" placeholder="Username"></td>
+            </tr>
+
+            <tr>
+                <td><label for="pswd">Password:</label></td>
+                <td><input type="password" name="pswd" id="pswd" placeholder="Password"></td>
+            </tr>
+
+            <tr style="height:30px">
+                <td><label for="coe" style="text-align:center">City of<br>Employement</label></td>
+                <td><input type="text" name="coe" id="coe" placeholder="City"><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="web_server">Web Server</label></td>
+                <td>
+                <select name="web_server" id="web_server">
+                    <option value="select_server">~ Select a Server ~</option>
+                    <option value="Apache HTTP Server">Apache HTTP Server</option>
+                    <option value="Microsoft Internet Information Services">Microsoft Internet Information Services</option>
+                    <option value="Nginx">Nginx</option>
+                    <option value="Lighttpd">Lighttpd</option>
+                </select>
+                </td>
+            </tr>
+
+            <tr style="height: 125px;">
+                <td><label for="role" style="text-align: left;">Please specify<br>your role</label></td>
+                <td>
+                    <input type="radio" name="role" id="role">
+                    <label for="admin">Admin</label><br>
+                    <input type="radio" name="role" id="role">
+                    <label for="engineer">Engineer</label><br>
+                    <input type="radio" name="role" id="role">
+                    <label for="manager">Manager</label><br>
+                    <input type="radio" name="role" id="role">
+                    <label for="guest">Guest</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="sign_on">Single Sign on<br>to the following</label></td>
+                <td>
+                    <input type="checkbox" name="sign_on" id="sign_on">
+                    <label for="main">Mail</label><br>
+                    <input type="checkbox" name="sign_on" id="sign_on">
+                    <label for="payroll">Payroll</label><br>
+                    <input type="checkbox" name="sign_on" id="sign_on">
+                    <label for="self-service">Self-Service</label><br>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="padding: 20px; padding-left: 0px; width: 10px; text-align: left;">
+                    <!-- <input type="submit" name="submit" id="submit" value="Login"> -->
+                    <button type="submit">Login</button>
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

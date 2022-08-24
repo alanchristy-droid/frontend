@@ -1,0 +1,23 @@
+.pics{
+    display: flex;
+    gap: 100px;
+}
+
+.content-pic{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 150px;
+}
+.content h1 {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+@media only screen and (max-width: 310px) {
+    .pics{
+        flex-direction: column;
+        min-width: 0;
+    }
+}
