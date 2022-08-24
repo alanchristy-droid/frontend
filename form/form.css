@@ -1,0 +1,28 @@
+h1{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    background-color: rgb(62, 66, 102);
+    height: 100px;
+}
+
+.heading{
+    padding: 30px;
+    color: aliceblue;
+}
+
+body{
+    margin: 0px;
+    background-color: rgb(222, 231, 255);
+}
+
+form{
+    padding: 175px 700px ;
+}
+
+table{
+    border: 2px solid rgb(62, 66, 102);
+    padding: 50px;
+    background-color: rgb(62, 66, 102);
+    color: aliceblue;
+}
