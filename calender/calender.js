@@ -23,7 +23,6 @@ const generateYear = (yearConst) =>{
         year.appendChild(yearElement)
     }
 }
-// heat Wave
 const generateMonth = (monthConst) =>{
     const month = document.getElementById("monthid")
     monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -37,30 +36,13 @@ const generateMonth = (monthConst) =>{
         {
             monthElement.setAttribute("selected", "selected")
         }
-        // console.table({[monthArray[i]]:i})   
         monthElement.appendChild(content)    
         month.appendChild(monthElement)
 
     }
 }
 
-// const incButton = () =>{
-//     dateIdVar = document.getElementById("date")
-//     weekIdVar = document.getElementById("week")
-//     weekIdVar.remove()
-//     dateIdVar.remove()
-//     setCalender(year, month + 1)  
-// }
-
-// const decButton = () =>{
-//     dateIdVar = document.getElementById("date")
-//     weekIdVar = document.getElementById("week")
-//     weekIdVar.remove()
-//     dateIdVar.remove()
-//     setCalender(year, month - 1)  
-// }
 const setCalender = (year, month) =>{
-    // console.log("creating calendar with ",year, month)
     days = calculateDay(year, month)
     const dD = new Date(year, month)
     const textMonth= dD.toLocaleString('default', { month: 'long' })
@@ -90,8 +72,6 @@ const setCalender = (year, month) =>{
        
     }
     week.appendChild(weekElement)
-
-///edit from here
 
     for(let i = 0; i < startDay; i++)
     {
