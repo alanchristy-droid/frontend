@@ -1,0 +1,51 @@
+body{
+    margin: 0px;
+}
+#month{
+
+    margin: 500px;
+    margin-top: 200px;
+    width: 701px;
+
+}
+
+#week{
+    border-top:1px solid black ;
+    border-left: 1px solid black ;
+    padding: 0px;
+    margin: 0px;
+}
+
+#date{
+    border-left: 1px solid black ;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px;
+    margin: 0px;
+}
+
+#week li{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    padding-top: 28px;
+    list-style-type: none;
+    font-weight: bold;
+    width: 100px;
+    height: 75px;
+    text-align: center;
+    display: inline-block;
+}
+
+#date li{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    padding-top: 28px;
+    list-style-type: none;
+    width: 100px;
+    height: 75px;
+    text-align: center;
+    display: inline-block;  
+}
+
