@@ -6,18 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="calender.css">
     <script src="./calender.js  " defer></script>
-    <title>Calender</title>
+    <title>Calendar</title>
 </head>
 <body>
-    <h3>Calender</h3>
-    <div id="month">
-        <div id="divweek">
-            <ul id="week"></ul>
-        </div>
-        <div id="divdate">
-            <ul id="date"></ul>
-        </div>
+    <div id="head">
+        
+            <h2 id="heading"></h2>
+            <div id="dropdown">
+                <select name="yearid" id="yearid"></select>
+                <select name="monthid" id="monthid"></select>
+            </div>
+            <div id="divweek">
+                
+                <!-- <ul id="week"></ul> -->
+            </div>
+            <div id="divdate">
+                <!-- <ul id="date"></ul> -->
+            </div>
+            
     </div>
-    
+    <div id="buttondiv">
+        <button id="decbutton" type="button">&lt;&lt;&lt;Previous Month</button>
+        <button id="incbutton" type="button">Next Month >>></button>  
+    </div>
 </body>
 </html>

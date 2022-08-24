@@ -1,12 +1,49 @@
 body{
-    margin: 0px;
+    margin: 0px 0px 1500px;
 }
-#month{
-
-    margin: 500px;
-    margin-top: 200px;
+#head #heading{
+    color: darkblue;
+    font-weight: bold;
+}
+#head{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 500px 0;
     width: 701px;
+    align-items: center;
+    min-height: 800px;
+}
 
+#buttondiv button{
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: darkblue;
+    padding: 15px;
+    width: 200px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: white;
+    border-radius: 25px ;
+}
+
+#buttondiv button:hover{ 
+    background-color: blue;
+}
+
+#dropdown select{
+    background-color: darkblue;
+    padding: 5px;
+    width: 120px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border: white;
+    border-radius: 15px ;
+}
+
+#dropdown select:active{
+    background-color: blue;
 }
 
 #week{
@@ -47,5 +84,11 @@ body{
     height: 75px;
     text-align: center;
     display: inline-block;  
+}
+#buttondiv{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    align-items: center;
 }
 
