@@ -157,7 +157,7 @@ document.getElementById("incbutton").addEventListener("click", (e) =>{
 
     if(parseInt(month) === 11)
     {
-        year += 1
+        year = parseInt(year) + 1
         month = 0
         yearChange.value = year
         monthChange.value = month
@@ -165,7 +165,7 @@ document.getElementById("incbutton").addEventListener("click", (e) =>{
     }
     else
     {
-        month += 1
+        month = parseInt(month) + 1
         monthChange.value = month
     }
     setCalender(parseInt(year), parseInt(month))
@@ -181,7 +181,7 @@ document.getElementById("decbutton").addEventListener("click", (e) =>{
 
     if(parseInt(month) === 0)
     {
-        year -= 1
+        year = parseInt(year) - 1
         month = 11
         yearChange.value = year
         monthChange.value = month
@@ -189,7 +189,7 @@ document.getElementById("decbutton").addEventListener("click", (e) =>{
     }
     else
     {
-        month -= 1
+        month = parseInt(month) - 1
         monthChange.value = month
     }
     setCalender(parseInt(year), parseInt(month))
