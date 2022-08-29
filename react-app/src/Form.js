@@ -1,7 +1,8 @@
 import "./form.css"
 import React from "react"
+// import Display from "./Display"
 const initialState={
-    username: "",
+    username: "" ,
     password: "",
     cityofemployment: "",
     webserver: "",
@@ -9,11 +10,12 @@ const initialState={
     isMail: true,
     isPayroll:false,
     isSelfService:false
-
 }
 export default function Form(){
 
     const [formData, setFormData] = React.useState(initialState)
+    const [isValidated, setIsValidated] = React.useState(false)
+    const [submitState, setSubmitState] = React.useState([])
     function handleChange(event)
     {
         const {name, value, checked,type} = event.target
@@ -27,37 +29,59 @@ export default function Form(){
     }
 
     function handleSubmit(event){
-        event.preventDefault()
+        
+        let flag = 1
         if(!formData.username && !formData.password)
-    {
-        window.alert("Username and Password fields are required")
-    }
-    else if(!formData.username)
-    {
-        window.alert("Username field is required")
-    }
-    else if(!formData.password)
-    {
-        window.alert("Password field is required")
-    }   
+        {
+            window.alert("Username and Password fields are required")
+            flag = 0
+            event.preventDefault()
+        }
+        else if(!formData.username)
+        {
+            window.alert("Username field is required")
+            flag = 0
+            event.preventDefault()
+        }
+        else if(!formData.password)
+        {
+            window.alert("Password field is required")
+            flag = 0
+            event.preventDefault()
+        }   
 
-    const passwdLength = formData.password.length
-    const passwdDigit = (/\d/).test(formData.password)
-    if(formData.password && passwdLength < 8)
-    {
-        window.alert("Password must be minimum 8 characters")
+        const passwdLength = formData.password.length
+        const passwdDigit = (/\d/).test(formData.password)
+        if(formData.password && passwdLength < 8)
+        {
+            window.alert("Password must be minimum 8 characters")
+            flag = 0
+            event.preventDefault()
+        }
+        if(passwdLength >= 8 & !passwdDigit)
+        {
+            window.alert("Password must contain atleast one number")
+            flag = 0
+            event.preventDefault()
+        }
+        if(flag === 1)
+        {
+            console.log(formData)
+            setIsValidated(true)
+            setSubmitState(prevSubmitState => [...prevSubmitState, {...formData}])
+            setFormData(initialState)
+            event.preventDefault()
+        }
     }
-    if(passwdLength >= 8 & !passwdDigit)
-    {
-        window.alert("Password must contain atleast one number")
-    }
-    }
+
+
 
     function handleReset(){
         setFormData(initialState)
+        setIsValidated(false)
     }
-
     return(
+        <div style={{display:"flex", gap:"5rem"}} >
         <form className="form-container" onSubmit={handleSubmit}>
             <div>
             {/* Username Input */}
@@ -104,7 +128,7 @@ export default function Form(){
                     <option value="Nginx">Nginx</option>
                     <option value="Lighttpd">Lighttpd</option>
                 </select>
-            </div>
+        </div>  
 
             {/* Role Input */}
             <div style={{display:"flex", alignItems:"center"}}>
@@ -200,5 +224,18 @@ export default function Form(){
                 <button className="reset" type="button" onClick={handleReset}>Reset</button>
                 </div>
         </form>
+        <div className="display-form-container">
+       {
+        isValidated && submitState.map((v) =>   <div className="display-form">
+            <span>Username: &nbsp;&nbsp;&nbsp;{v.username}</span>
+            <span>Password: &nbsp;&nbsp;&nbsp;{v.password}</span>
+            <span>City of employment:&nbsp;&nbsp;&nbsp;{v.cityofemployment}</span>
+            <span>Web Server:&nbsp;&nbsp;&nbsp;{v.webserver}</span>
+            <span>Role:&nbsp;&nbsp;&nbsp;{v.role}</span>
+            <span>Sign-On:&nbsp;&nbsp;&nbsp;{`${v.isMail?"Mail":""} ${v.isPayroll?"Payroll":""} ${v.isSelfService?"Self-Service":""}`}</span>
+        </div>)
+       }
+       </div>
+        </div>
     )
 }

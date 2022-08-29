@@ -44,3 +44,23 @@ body{
 .form-container button:hover{
     background-color:#FFBDFF;
 }
+
+.display-form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #FFBDFF;
+    background-color: #FFBDFF;
+    /* justify-content: space-between; */
+    padding:10px;
+}
+
+.display-form span{
+    color: #663399;
+    font-weight: bold;
+}
+
+.display-form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
