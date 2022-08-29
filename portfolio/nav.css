@@ -46,11 +46,16 @@ body{
 }
 
 @media only screen and (max-width: 1085px) {
-    .navbar-list{
-        flex-direction: column;
-    }
     .more-content{
         flex-direction: column;
+        gap: 0.5rem;
         min-width: 0;
+        margin-right: 10px;
+    }
+    .main-page{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: auto;
+        margin-left: 10px;
     }
 }
