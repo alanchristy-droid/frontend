@@ -38,20 +38,35 @@ export default function GetInput(){
     }
 
     function handleDecClick(event){
-        console.log(day.month)
-        setDay(prevState =>{
-            return(
-                {...prevState, [event.target.name]: prevState.month -= 1}
-            )
-        })
+        if(day.month === 0){
+            setDay(prevState =>{
+                return(
+                    {...prevState, [event.target.name]: 11, [event.target.name]: prevState.year - 1}
+                )
+            })
+        }
+        else{
+            setDay(prevState =>{
+                return(
+                    {...prevState, [event.target.name]: prevState.month - 1}
+                )
+            })
+        }
     }
 
     function handleIncClick(event){
-        setDay(prevState =>{
-            return(
-                {...prevState, [event.target.name]: prevState.month += 1}
-            )
-        })
+        console.log(day.month)
+        day.month === 11 ?
+            setDay(prevState =>{
+                return(
+                    {...prevState, [event.target.name]: 0, [event.target.name]: prevState.year + 1}
+                )
+            }) :
+            setDay(prevState =>{
+                return(
+                    {...prevState, [event.target.name]: prevState.month + 1}
+                )
+            })
     }
 
     // console.log(day)
