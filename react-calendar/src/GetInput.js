@@ -21,6 +21,15 @@ export default function GetInput() {
     yearArray.push(i);
   }
 
+  function toMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+  
+    return date.toLocaleString('en-US', {
+      month: 'long',
+    });
+  }
+
   function handleChange(event) {
     console.log("changes");
     console.log(event.target.name);
@@ -55,6 +64,7 @@ export default function GetInput() {
   return (
     <div>
       <div id="head">
+        <h1 id="heading">{toMonthName(day.month)}&nbsp;&nbsp;{day.year}</h1>
         <div id="dropdown">
           <select
             id="monthid"
@@ -82,9 +92,7 @@ export default function GetInput() {
             ))}
           </select>
         </div>
-        <CalArray yearProp={day.year} monthProp={day.month} />
-      </div>
-      <div id="buttondiv">
+        <div id="buttondiv">
         <button name="month" onClick={(e) => handleClick(e, false)}>
           Previous
         </button>
@@ -92,6 +100,10 @@ export default function GetInput() {
           Next
         </button>
       </div>
+        <CalArray yearProp={day.year} monthProp={day.month} />
+        
+      </div>
+      
     </div>
   );
 }
