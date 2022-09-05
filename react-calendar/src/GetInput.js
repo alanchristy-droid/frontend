@@ -37,56 +37,43 @@ export default function GetInput(){
 
     }
 
-    function handleDecClick(event){
-        if(day.month === 0){
+    function handleIncClick(event, isNext){
+        isNext?
             setDay(prevState =>{
                 return(
-                    {...prevState, [event.target.name]: 11, [event.target.name]: prevState.year - 1}
-                )
-            })
-        }
-        else{
-            setDay(prevState =>{
-                return(
-                    {...prevState, [event.target.name]: prevState.month - 1}
-                )
-            })
-        }
-    }
-
-    function handleIncClick(event){
-        console.log(day.month)
-        day.month === 11 ?
-            setDay(prevState =>{
-                return(
-                    {...prevState, [event.target.name]: 0, [event.target.name]: prevState.year + 1}
+                    {...prevState, [event.target.name]: prevState.month === 11 ?  0 : prevState.month + 1,  year: prevState.month===11? prevState.year+1:prevState.year }
                 )
             }) :
             setDay(prevState =>{
+                console.log(day.month,day.year)
                 return(
-                    {...prevState, [event.target.name]: prevState.month + 1}
+                    {...prevState, [event.target.name]: prevState.month === 0 ?  11: prevState.month - 1,  year: prevState.month===0? prevState.year-1:prevState.year}
                 )
             })
     }
-
     // console.log(day)
         return(
-            <div id='head'>
-                <div id='dropdown'>
-                <select id="monthid" name="month" onChange={handleChange} value={day.month}>
-                    {monthArray.map((eachMonth, i) =>(<option value={i} name="month">{eachMonth}</option>))}
-                </select>
+            <div>
+                <div id='head'>
+                    <div id='dropdown'>
+                    <select id="monthid" name="month" onChange={handleChange} value={day.month}>
+                        {monthArray.map((eachMonth, i) =>(<option value={i} name="month">{eachMonth}</option>))}
+                    </select>
 
-                <select id="yearid" name="year" onChange={handleChange} value={day.year}>
-                    {yearArray.map(eachYear =>(<option value={eachYear} name="year">{eachYear}</option>))}
-                </select>
+                    <select id="yearid" name="year" onChange={handleChange} value={day.year}>
+                        {yearArray.map(eachYear =>(<option value={eachYear} name="year">{eachYear}</option>))}
+                    </select>
+                    </div>
+                    <CalArray 
+                        yearProp={day.year}
+                        monthProp={day.month}
+                    />
+                    
                 </div>
-                <CalArray 
-                    yearProp={day.year}
-                    monthProp={day.month}
-                />
-                <button name='month' onClick={handleDecClick}>Previous</button>
-                <button name='month' onClick={handleIncClick}>Next</button>
+                <div id='buttondiv'>
+                    <button name='month' onClick={(e) => handleIncClick(e, false)}>Previous</button>
+                    <button name='month' onClick={(e) => handleIncClick(e, true)}>Next</button>
+                </div>
             </div>
         )
 }

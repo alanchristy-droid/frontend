@@ -1,7 +1,7 @@
 body{
-    margin: 100px 0px 1500px;
+    margin: 0px 0px 1500px;
 }
-#root #heading{
+#head #heading{
     color: darkblue;
     font-weight: bold;
 }
@@ -12,6 +12,23 @@ body{
     width: 701px;
     align-items: center;
     min-height: 800px;
+}
+
+#buttondiv button{
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: darkblue;
+    padding: 15px;
+    width: 200px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: white;
+    border-radius: 25px ;
+}
+
+#buttondiv button:hover{ 
+    background-color: blue;
 }
 
 #dropdown select{
@@ -68,5 +85,10 @@ body{
     text-align: center;
     display: inline-block;  
 }
-
+#buttondiv{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    align-items: center;
+}
 
